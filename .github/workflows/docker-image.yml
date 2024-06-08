@@ -41,11 +41,6 @@ jobs: #定义工作流程
 
       - name: Upload files
         run: |
-          lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ftp://jp.vicicode.com <<EOF
-          cd losehu
-          mrm *
-          bye
-          EOF
           for file in LOSEHU*.bin; do
             echo "Uploading $file to ftp://jp.vicicode.com/losehu"
             lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ftp://jp.vicicode.com <<EOF
