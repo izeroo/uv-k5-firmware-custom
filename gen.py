@@ -120,5 +120,6 @@ for index in range(len(set(strx))):
     cuscanhshu_value = strx[index]
     customname_value = 'LOSEHU' + stry[index]
     os.system(f"make full_all CUSCANSHU={cuscanhshu_value} CUSTOMNAME={customname_value}")
+    print(f"make full_all CUSCANSHU={cuscanhshu_value} CUSTOMNAME={customname_value}")
 
 
