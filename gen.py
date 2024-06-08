@@ -121,7 +121,6 @@ def run_make_command(index):
     os.system(f"make full_all CUSCANSHU={cuscanhshu_value} CUSTOMNAME={customname_value}")
 
 # 生成组合
-generate_combinations()
 
 # 使用多线程并行执行 make 命令
 with ThreadPoolExecutor(max_workers=50) as executor:
