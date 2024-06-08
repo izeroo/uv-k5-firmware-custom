@@ -30,8 +30,6 @@ jobs: #定义工作流程
         run: | 
           python gen.py
 
-      - name: size #计算 firmware 大小
-        run: arm-none-eabi-size firmware #使用 arm-none-eabi-size 命令计算固件大小
 
       - name: Upload Artifact #上传固件文件
         uses: actions/upload-artifact@v3 #使用 GitHub Actions 提供的 upload-artifact 动作
