@@ -604,7 +604,7 @@ test:
 
 
 build:clean $(TARGET)
-	$(OBJCOPY) -O binary $(TARGET) $(TARGET).bin
+	@$(OBJCOPY) -O binary $(TARGET) $(TARGET).bin
 ifndef MY_PYTHON
 	$(info )
 	$(info !!!!!!!! PYTHON NOT FOUND, *.PACKED.BIN WON'T BE BUILT)
@@ -635,15 +635,15 @@ flash:
 version.o: .FORCE
 
 $(TARGET): $(OBJS)
-	$(LD) $(LDFLAGS) $^ -o $@ $(LIBS)
+	@$(LD) $(LDFLAGS) $^ -o $@ $(LIBS)
 
 bsp/dp32g030/%.h: hardware/dp32g030/%.def
 
 %.o: %.c | $(BSP_HEADERS)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 %.o: %.S
-	$(AS) $(ASFLAGS) $< -o $@
+	@$(AS) $(ASFLAGS) $< -o $@
 
 .FORCE:
 
@@ -673,4 +673,4 @@ endif
 
 
 clean:
-	$(RM) $(call FixPath, $(TARGET).bin $(PACKED_FILE_SUFFIX).bin $(TARGET) $(OBJS) $(DEPS))
+	@$(RM) $(call FixPath, $(TARGET).bin $(PACKED_FILE_SUFFIX).bin $(TARGET) $(OBJS) $(DEPS))
