@@ -120,10 +120,12 @@ def compile_code(index):
     print(stry[index])
     os.system("cp Makefile.template Makefile")
     alter("Makefile", "CUSCANSHU", strx[index])
+
     alter("Makefile", "CUSTOMNAME", 'LOSEHU' + stry[index])
+    print(strx[index], stry[index])
     time.sleep(1)
     os.system("make full_all")
 
-with ThreadPoolExecutor(max_workers=5) as executor:
+with ThreadPoolExecutor(max_workers=50) as executor:
     for index in range(len(set(strx))):
         executor.submit(compile_code, index)
