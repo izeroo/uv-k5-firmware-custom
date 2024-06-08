@@ -651,4 +651,4 @@ bsp/dp32g030/%.h: hardware/dp32g030/%.def
 -include $(DEPS)
 
 clean:
-	$(RM) $(call FixPath, $(TARGET).bin $(PACKED_FILE_SUFFIX).bin $(TARGET) $(OBJS) $(DEPS))
+	$(RM) $(call FixPath, $(TARGET).bin  $(TARGET) $(OBJS) $(DEPS))
