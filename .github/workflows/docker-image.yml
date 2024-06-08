@@ -54,5 +54,5 @@ jobs: #定义工作流程
             cd losehu
             put $file
             bye
-EOF
+          EOF
           done
