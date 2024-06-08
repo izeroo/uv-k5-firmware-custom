@@ -1,22 +1,21 @@
 import os
 import time
-from concurrent.futures import ThreadPoolExecutor
 
-def alter(file, old_str, new_str):
+def alter(file,old_str,new_str):
     """
     替换文件中的字符串
-    :param file: 文件名
-    :param old_str: 旧字符串
-    :param new_str: 新字符串
+    :param file:文件名
+    :param old_str:就字符串
+    :param new_str:新字符串
     :return:
     """
     file_data = ""
     with open(file, "r", encoding="utf-8") as f:
         for line in f:
             if old_str in line:
-                line = line.replace(old_str, new_str)
+                line = line.replace(old_str,new_str)
             file_data += line
-    with open(file, "w", encoding="utf-8") as f:
+    with open(file,"w",encoding="utf-8") as f:
         f.write(file_data)
 
 list1 = [
@@ -49,6 +48,7 @@ list6 = [
     'ENABLE_FMRADIO=1'
 ]
 
+
 list7 = [
     'ENABLE_PINYIN=1',
 ]
@@ -61,6 +61,8 @@ list9 = [
     'ENABLE_4732SSB=1'
 ]
 
+
+
 strx = []
 stry = []
 
@@ -69,12 +71,12 @@ for chinese in list1:
         for doppler in [[], list4]:
             for mdc1200 in [[], list5]:
                 for fm in [[], list6[0], list6[1]]:
-                    for pinyin in [[], list7]:
-                        for spectrum in [[], list8]:
-                            for ssb in [[], list9]:
+                    for pinyin in [[],list7]:
+                        for spectrum in [[],list8]:
+                            for ssb in [[],list9]:
 
-                                strm = ''
-                                strn = ''
+                                strm = '';
+                                strn = '';
                                 strm += chinese + ' '
                                 strn += chinese[-1]
                                 if messenger != []:
@@ -115,7 +117,7 @@ for chinese in list1:
                                 strx.append(strm)
                                 stry.append(strn)
 
-def compile_code(index):
+for index in range(len(set(strx))):
     print(strx[index])
     print(stry[index])
     # os.system("cp Makefile.template Makefile")
@@ -123,7 +125,3 @@ def compile_code(index):
     alter("Makefile", "CUSTOMNAME", 'LOSEHU' + stry[index])
     time.sleep(1)
     os.system("make full_all")
-
-with ThreadPoolExecutor(max_workers=50) as executor:
-    for index in range(len(set(strx))):
-        executor.submit(compile_code, index)
