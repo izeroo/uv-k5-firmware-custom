@@ -114,16 +114,8 @@ for chinese in list1:
                             strx.append(strm)
                             stry.append(strn)
 
-# os.system("cp Makefile Makefile.template")
 for index in range(len(set(strx))):
-    print(strx[index])
-    print(stry[index])
-    # os.system("cp Makefile.template Makefile")
-    # alter("Makefile", "CUSCANSHU", strx[index])
-    # alter("Makefile", "CUSTOMNAME", 'LOSEHU' + stry[index])
     cuscanhshu_value = strx[index]
     customname_value = 'LOSEHU' + stry[index]
-    # time.sleep(1)
     os.system(f"make full_all CUSCANSHU={cuscanhshu_value} CUSTOMNAME={customname_value}")
 
-    print('process:',(index+1)/len(set(strx)) * 100,'%')
