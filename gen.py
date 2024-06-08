@@ -1,5 +1,6 @@
 import os
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 def alter(file,old_str,new_str):
     """
@@ -114,8 +115,16 @@ for chinese in list1:
                             strx.append(strm)
                             stry.append(strn)
 
-for index in range(len(set(strx))):
+def run_make_command(index):
     cuscanhshu_value = strx[index]
     customname_value = 'LOSEHU' + stry[index]
     os.system(f"make full_all CUSCANSHU={cuscanhshu_value} CUSTOMNAME={customname_value}")
 
+# 生成组合
+generate_combinations()
+
+# 使用多线程并行执行 make 命令
+with ThreadPoolExecutor(max_workers=50) as executor:
+    futures = [executor.submit(run_make_command, index) for index in range(len(set(strx)))]
+    for future in futures:
+        future.result()
