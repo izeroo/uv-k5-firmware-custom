@@ -624,8 +624,8 @@ endif
 
 
 all:
-	$(MAKE) build
-	$(MAKE) flash
+	$(RM) *.bin
+	$(MAKE) build CUSCANSHU
 
 debug:
 	$(OPENOCD) -c "bindto 0.0.0.0" -f interface/stlink.cfg -f dp32g030.cfg
