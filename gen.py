@@ -71,7 +71,6 @@ for chinese in list1:
                     for pinyin in [[],list7]:
                         for spectrum in [[],list8]:
                             for ssb in [[],list9]:
-
                                 strm = '';
                                 strn = '';
                                 strm += chinese + ' '
