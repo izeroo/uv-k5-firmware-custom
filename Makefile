@@ -77,6 +77,11 @@ PACKED_FILE_SUFFIX = LOSEHU128
 ifeq ($(ENABLE_PINYIN),1)
 	ENABLE_CHINESE_FULL=4
 endif
+
+ifeq ($(ENABLE_DOPPLER),1)
+	ENABLE_SPECTRUM=1
+endif
+
 ifeq ($(ENABLE_CHINESE_FULL),0)
     ifeq ($(ENABLE_ENGLISH),1)
         $(info E)
