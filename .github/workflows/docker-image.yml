@@ -26,7 +26,7 @@ jobs: #定义工作流程
 
 
       - name: Install dependencies
-        run: |
+        run: | 
           python gen.py
 
       - name: size #计算 firmware 大小
