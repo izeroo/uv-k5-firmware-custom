@@ -41,15 +41,12 @@ jobs: #定义工作流程
         run: |
           python gen.py
 
-      - name: Upload to FTP #上传文件到 FTP 服务器
+      - name: Upload files
         run: |
           for file in LOSEHU*.bin; do
-            lftp -u ${FTP_USERNAME},${FTP_PASSWORD} ${FTP_SERVER} -e "
-            put $file -o /$file
+            echo "Uploading $file to ftp://jp.vicicode.com/losehu"
+            lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ftp://jp.vicicode.com <<EOF
+            cd losehu
+            put $file
             bye
-            "
           done
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
