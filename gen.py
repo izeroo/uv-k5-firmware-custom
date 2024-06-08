@@ -118,8 +118,9 @@ for chinese in list1:
 def compile_code(index):
     print(strx[index])
     print(stry[index])
-    # os.system("cp Makefile.template Makefile")
-    alter("Makefile", "CUSCANSHU", strx[index])
+    os.system("cp Makefile.template Makefile")
+
+alter("Makefile", "CUSCANSHU", strx[index])
     alter("Makefile", "CUSTOMNAME", 'LOSEHU' + stry[index])
     time.sleep(1)
     os.system("make full_all")

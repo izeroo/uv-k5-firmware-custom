@@ -679,5 +679,6 @@ endif
 	$(SIZE) $(TARGET)
 
 
+
 clean:
 	$(RM) $(call FixPath, $(TARGET).bin $(PACKED_FILE_SUFFIX).bin $(TARGET) $(OBJS) $(DEPS))
