@@ -1,4 +1,5 @@
 import os
+import time
 
 def alter(file,old_str,new_str):
     """
@@ -56,8 +57,14 @@ list8 = [
     'ENABLE_SPECTRUM=1'
 ]
 
-list9 = [
-    'ENABLE_4732SSB=1'
+listn = [
+    list1,
+    list2,
+    list3,
+    list4,
+    list5,
+    list6,
+    list7
 ]
 
 strx = []
@@ -70,53 +77,48 @@ for chinese in list1:
                 for fm in [[], list6[0], list6[1]]:
                     for pinyin in [[],list7]:
                         for spectrum in [[],list8]:
-                            for ssb in [[],list9]:
-                                strm = '';
-                                strn = '';
-                                strm += chinese + ' '
-                                strn += chinese[-1]
-                                if messenger != []:
-                                    strm += " ".join(list3) + ' '
-                                    strn += '1'
-                                else:
-                                    strn += '0'
-                                if doppler != []:
-                                    strm += " ".join(list4) + ' '
-                                    strn += '1'
-                                else:
-                                    strn += '0'
-                                if mdc1200 != []:
-                                    strm += " ".join(list5) + ' '
-                                    strn += '1'
-                                else:
-                                    strn += '0'
-                                if fm != []:
-                                    strm += fm + ' '
-                                    strn += fm[7]
-                                else:
-                                    strn += '0'
-                                if pinyin != []:
-                                    strm += " ".join(list7) + ' '
-                                    strn += '1'
-                                else:
-                                    strn += '0'
-                                if spectrum != []:
-                                    strm += " ".join(list8) + ' '
-                                    strn += '1'
-                                else:
-                                    strn += '0'
-                                if ssb != []:
-                                    strm += " ".join(list9) + ' '
-                                    strn += '1'
-                                else:
-                                    strn += '0'
-                                strx.append(strm)
-                                stry.append(strn)
-
-
-# 生成组合
+                            strm = '';
+                            strn = '';
+                            strm += chinese + ' '
+                            strn += chinese[-1]
+                            if messenger != []:
+                                strm += " ".join(list3) + ' '
+                                strn += '1'
+                            else:
+                                strn += '0'
+                            if doppler != []:
+                                strm += " ".join(list4) + ' '
+                                strn += '1'
+                            else:
+                                strn += '0'
+                            if mdc1200 != []:
+                                strm += " ".join(list5) + ' '
+                                strn += '1'
+                            else:
+                                strn += '0'
+                            if fm != []:
+                                strm += fm + ' '
+                                strn += fm[7]
+                            else:
+                                strn += '0'
+                            if pinyin != []:
+                                strm += " ".join(list7) + ' '
+                                strn += '1'
+                            else:
+                                strn += '0'
+                            if spectrum != []:
+                                strm += " ".join(list8) + ' '
+                                strn += '1'
+                            else:
+                                strn += '0'
+                            strx.append(strm)
+                            stry.append(strn)
 
 for index in range(len(set(strx))):
+    print(strx[index])
+    print(stry[index])
     cuscanhshu_value = strx[index]
     customname_value = 'LOSEHU' + stry[index]
     os.system(f"make full_all CUSCANSHU={cuscanhshu_value} CUSTOMNAME={customname_value}")
+
+
