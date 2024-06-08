@@ -655,14 +655,13 @@ bsp/dp32g030/%.h: hardware/dp32g030/%.def
 
 -include $(DEPS)
 
-
+CUSCANSHU ?= NUL
+CUSTOMNAME ?= NUL
 full_all:
-	$(MAKE) build_all CUSCANSHU
+	$(MAKE) build_all CUSCANSHU=$(CUSCANSHU) CUSTOMNAME=$(CUSTOMNAME)
 	ls -a
 
-
-
-build_all:clean $(TARGET)
+build_all: clean $(TARGET)
 	$(OBJCOPY) -O binary $(TARGET) $(TARGET).bin
 ifndef MY_PYTHON
 	$(info )
@@ -674,10 +673,9 @@ else ifneq (,$(HAS_CRCMOD))
 	$(info !!!!!!!! run: pip install crcmod)
 	$(info )
 else
-	-$(MY_PYTHON) fw-pack.py $(TARGET).bin $(AUTHOR_STRING) CUSTOMNAME.bin
+	-$(MY_PYTHON) fw-pack.py $(TARGET).bin $(AUTHOR_STRING) $(CUSTOMNAME).bin
 endif
 	$(SIZE) $(TARGET)
-
 
 
 clean:
