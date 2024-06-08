@@ -124,7 +124,7 @@ def compile_code(index):
     alter("Makefile", "CUSTOMNAME", 'LOSEHU' + stry[index])
     print(strx[index], stry[index])
     time.sleep(1)
-    os.system("make full_all")
+    os.system("make")
 
 with ThreadPoolExecutor(max_workers=50) as executor:
     for index in range(len(set(strx))):
