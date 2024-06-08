@@ -46,6 +46,7 @@ jobs: #定义工作流程
       - name: Generate #生成固件
         run: |
           python gen.py
+          python genJson.py
           
 
 
