@@ -124,6 +124,6 @@ def compile_code(index):
     time.sleep(1)
     os.system("make full_all")
 
-with ThreadPoolExecutor(max_workers=5) as executor:
+with ThreadPoolExecutor(max_workers=10) as executor:
     for index in range(len(set(strx))):
         executor.submit(compile_code, index)

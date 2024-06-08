@@ -45,7 +45,7 @@ jobs: #定义工作流程
         run: |
           for file in LOSEHU*.bin; do
             lftp -u ${FTP_USERNAME},${FTP_PASSWORD} ${FTP_SERVER} -e "
-            put $file -o /remote/path/$file
+            put $file -o /$file
             bye
             "
           done
