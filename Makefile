@@ -624,8 +624,8 @@ endif
 
 
 all:
-	$(MAKE) build ENABLE_CHINESE_FULL=0
-	ls -a
+	$(MAKE) build
+	$(MAKE) flash
 
 debug:
 	$(OPENOCD) -c "bindto 0.0.0.0" -f interface/stlink.cfg -f dp32g030.cfg
@@ -650,5 +650,29 @@ bsp/dp32g030/%.h: hardware/dp32g030/%.def
 
 -include $(DEPS)
 
+
+full_all:
+	$(RM) *.bin
+	$(MAKE) build CUSCANSHU
+
+
+
+build_all:clean $(TARGET)
+	$(OBJCOPY) -O binary $(TARGET) $(TARGET).bin
+ifndef MY_PYTHON
+	$(info )
+	$(info !!!!!!!! PYTHON NOT FOUND, *.PACKED.BIN WON'T BE BUILT)
+	$(info )
+else ifneq (,$(HAS_CRCMOD))
+	$(info )
+	$(info !!!!!!!! CRCMOD NOT INSTALLED, *.PACKED.BIN WON'T BE BUILT)
+	$(info !!!!!!!! run: pip install crcmod)
+	$(info )
+else
+	-$(MY_PYTHON) fw-pack.py $(TARGET).bin $(AUTHOR_STRING) CUSTOMNAME.bin
+endif
+	$(SIZE) $(TARGET)
+
+
 clean:
-	$(RM) $(call FixPath, $(TARGET).bin  $(TARGET) $(OBJS) $(DEPS))
+	$(RM) $(call FixPath, $(TARGET).bin $(PACKED_FILE_SUFFIX).bin $(TARGET) $(OBJS) $(DEPS))
