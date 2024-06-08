@@ -653,7 +653,8 @@ CUSCANSHU ?= NUL
 CUSTOMNAME ?= NUL
 full_all:
 	$(MAKE) build_all CUSCANSHU=$(CUSCANSHU) CUSTOMNAME=$(CUSTOMNAME)
-	ls -a
+	find . -maxdepth 1 -type f -name "LOSEHU*.bin"
+    @echo "Number of firmware:" $(shell find . -maxdepth 1 -type f -name "LOSEHU*.bin" | wc -l)
 
 build_all: clean $(TARGET)
 	$(OBJCOPY) -O binary $(TARGET) $(TARGET).bin
