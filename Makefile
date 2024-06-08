@@ -121,13 +121,7 @@ ifeq ($(ENABLE_MDC1200),0)
 	ENABLE_MDC1200_EDIT			=0
 endif
 
-ifeq ($(ENABLE_CHINESE_FULL),0)
-	ENABLE_EEPROM_TYPE=0
-	ENABLE_MESSENGER              		=0
-    ENABLE_MESSENGER_DELIVERY_NOTIFICATION	= 0
-    ENABLE_MESSENGER_NOTIFICATION			= 0
-    $(info Normal)
-endif
+
 
 
 OPENOCD = openocd-win/bin/openocd.exe

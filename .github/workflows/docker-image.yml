@@ -57,6 +57,11 @@ jobs: #定义工作流程
 
       - name: Upload files
         run: |
+          lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ftp://jp.vicicode.com <<EOF
+          cd losehu
+          mirror --reverse --delete --verbose ./ . # 删除 losehu 文件夹中的所有文件
+          bye
+          EOF
           for file in LOSEHU*.bin; do
             echo "Uploading $file to ftp://jp.vicicode.com/losehu"
             lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ftp://jp.vicicode.com <<EOF
@@ -65,3 +70,11 @@ jobs: #定义工作流程
             bye
           EOF
           done
+
+          # 上传 version.json 文件
+          echo "Uploading version.json to ftp://jp.vicicode.com/losehu"
+          lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ftp://jp.vicicode.com <<EOF
+          cd losehu
+          put version.json
+          bye
+          EOF
