@@ -607,11 +607,9 @@ build:clean $(TARGET)
 	@$(OBJCOPY) -O binary $(TARGET) $(TARGET).bin
 ifndef MY_PYTHON
 	$(info )
-	$(info !!!!!!!! PYTHON NOT FOUND, *.PACKED.BIN WON'T BE BUILT)
 	$(info )
 else ifneq (,$(HAS_CRCMOD))
 	$(info )
-	$(info !!!!!!!! CRCMOD NOT INSTALLED, *.PACKED.BIN WON'T BE BUILT)
 	$(info !!!!!!!! run: pip install crcmod)
 	$(info )
 else
@@ -653,18 +651,13 @@ CUSCANSHU ?= NUL
 CUSTOMNAME ?= NUL
 full_all:
 	$(MAKE) build_all CUSCANSHU=$(CUSCANSHU) CUSTOMNAME=$(CUSTOMNAME)
-	find . -maxdepth 1 -type f -name "LOSEHU*.bin"
-    @echo "Number of firmware:" $(shell find . -maxdepth 1 -type f -name "LOSEHU*.bin" | wc -l)
 
 build_all: clean $(TARGET)
 	$(OBJCOPY) -O binary $(TARGET) $(TARGET).bin
 ifndef MY_PYTHON
-	$(info )
-	$(info !!!!!!!! PYTHON NOT FOUND, *.PACKED.BIN WON'T BE BUILT)
-	$(info )
+
 else ifneq (,$(HAS_CRCMOD))
 	$(info )
-	$(info !!!!!!!! CRCMOD NOT INSTALLED, *.PACKED.BIN WON'T BE BUILT)
 	$(info !!!!!!!! run: pip install crcmod)
 	$(info )
 else

@@ -60,7 +60,7 @@ jobs: #定义工作流程
         run: |
           lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ftp://jp.vicicode.com <<EOF
           cd losehu
-          mirror --reverse --delete --verbose ./ . # 删除 losehu 文件夹中的所有文件
+          mrm *
           bye
           EOF
           for file in LOSEHU*.bin; do
