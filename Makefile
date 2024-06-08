@@ -624,8 +624,8 @@ endif
 
 
 all:
-	$(RM) *.bin
-	$(MAKE) build CUSCANSHU
+	$(MAKE) build ENABLE_CHINESE_FULL=0
+	ls -a
 
 debug:
 	$(OPENOCD) -c "bindto 0.0.0.0" -f interface/stlink.cfg -f dp32g030.cfg

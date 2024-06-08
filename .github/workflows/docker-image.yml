@@ -25,7 +25,8 @@ jobs: #定义工作流程
         run: git config --global --add safe.directory /__w/uv-k5-firmware-chinese/uv-k5-firmware-chinese
 
 
-      - name: Install dependencies
+
+      - name: gengrate #生成固件
         run: | 
           python gen.py
 
