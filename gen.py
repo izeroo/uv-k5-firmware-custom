@@ -1,5 +1,6 @@
 import os
 import time
+from tqdm import tqdm
 
 def alter(file,old_str,new_str):
     """
@@ -115,7 +116,8 @@ for chinese in list1:
                             stry.append(strn)
 
 os.system("cp Makefile Makefile.template")
-for index in range(len(set(strx))):
+# 使用 tqdm 显示进度条
+for index in tqdm(range(len(set(strx))), desc="Processing"):
     print(strx[index])
     print(stry[index])
     os.system("cp Makefile.template Makefile")
