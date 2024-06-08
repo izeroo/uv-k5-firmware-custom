@@ -17,8 +17,8 @@ jobs: #定义工作流程
             python-pip \
             python-crcmod \
             unzip \
-            lftp
-          pip install tqdm # 安装 tqdm 库
+            lftp \
+            python-tqdm # 安装 tqdm 库
 
 
       - name: Checkout #拉取代码
