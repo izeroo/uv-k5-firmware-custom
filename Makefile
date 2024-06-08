@@ -659,6 +659,7 @@ CUSCANSHU ?= NUL
 CUSTOMNAME ?= NUL
 full_all:
 	$(MAKE) build_all CUSCANSHU=$(CUSCANSHU) CUSTOMNAME=$(CUSTOMNAME)
+	ls -a
 
 build_all: clean $(TARGET)
 	$(OBJCOPY) -O binary $(TARGET) $(TARGET).bin
