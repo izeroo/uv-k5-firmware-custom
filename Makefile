@@ -658,7 +658,7 @@ bsp/dp32g030/%.h: hardware/dp32g030/%.def
 
 full_all:
 	$(RM) *.bin
-	$(MAKE) build CUSCANSHU
+	$(MAKE) build_all CUSCANSHU
 
 
 
