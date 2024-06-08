@@ -114,6 +114,7 @@ for chinese in list1:
                             strx.append(strm)
                             stry.append(strn)
 
+os.system("cp Makefile Makefile.template")
 for index in range(len(set(strx))):
     print(strx[index])
     print(stry[index])
@@ -121,4 +122,4 @@ for index in range(len(set(strx))):
     alter("Makefile", "CUSCANSHU", strx[index])
     alter("Makefile", "CUSTOMNAME", 'LOSEHU' + stry[index])
     time.sleep(1)
-    os.system("make all")
+    os.system("make full_all")
