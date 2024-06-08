@@ -196,7 +196,7 @@ ifeq ($(ENABLE_4732),1)
         OBJS += app/si.o
         OBJS += driver/si473x.o
         OBJS += helper/rds.o
-
+        OBJS += app/spectrum.o
 endif
 OBJS += driver/gpio.o
 OBJS += driver/i2c.o
